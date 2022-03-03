@@ -39,3 +39,27 @@ namespace ToDoList.Models
     }
   }
 }
+
+// public string Name { get; set; }
+
+//  public Category(string name)
+//     {
+//       Name = name;
+
+//       Category myCategory = new Category("Dishes");
+
+//       Category.Name
+
+//       myCategory.name; 
+//       @Model.Name
+
+//       view(catergory // Category(2)
+//       home
+//       Work
+//       category = "Work"
+//       Work
+//       -do work
+//       -pretend to do work
+//       "Work"
+//       Model.Name
+//       @Model.name;
