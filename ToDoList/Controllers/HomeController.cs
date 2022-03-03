@@ -6,5 +6,11 @@ namespace ToDoList.Controllers {
       public ActionResult Index() {
         return View();
       }
+
+  [Route("/favorite_photos")]
+  public ActionResult FavoritePhotos()
+  {
+    return View();
+  }
     }
 }

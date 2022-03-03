@@ -25,6 +25,7 @@ namespace ToDoList {
       app.UseEndpoints(routes => {
         routes.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
       });
+      app.UseStaticFiles(); //THIS IS NEW
       app.Run(async (context) => {
         await context.Response.WriteAsync("Hello World!");
       });
