@@ -12,6 +12,7 @@ namespace ToDoList.Models
     public int CategoryId { get; set; }
     public string Name { get; set; }
     public virtual ICollection<Item> Items { get; set; }
+    
   }
 }
 
