@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 
 namespace ToDoList.Controllers
 {
@@ -106,6 +107,16 @@ namespace ToDoList.Controllers
     {
       var joinEntry = _db.CategoryItem.FirstOrDefault(entry => entry.CategoryItemId == joinId);
       _db.CategoryItem.Remove(joinEntry);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+
+    [HttpPost]
+    public ActionResult UpdateStatus(int id) //hidden itemId from form
+    {
+      var thisItem = _db.Items.FirstOrDefault(item => item.ItemId == id);
+      thisItem.Status = true;
+      _db.Entry(thisItem).State = EntityState.Modified;
       _db.SaveChanges();
       return RedirectToAction("Index");
     }    
