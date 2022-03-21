@@ -11,25 +11,19 @@
 {
   <h3>No items have been added yet!</h3>
 } 
-
 @foreach (Item item in Model)
 {
-  <li>@Html.ActionLink($"{item.Description}", "Details", new { id = item.ItemId })</li>
-  <p>Date: @item.Date</p>
-  
   if (@item.Status)
   {
-    <p>Task is complete!</p>
+    <li><strike><em>@Html.ActionLink($"{item.Description}", "Details", new { id = item.ItemId })</em></strike></li>
   }
   else
   {
     @using(@Html.BeginForm("UpdateStatus", "Items"))
     {
+      <li>@Html.ActionLink($"{item.Description}", "Details", new { id = item.ItemId }) Due: @item.Date</li>
       @Html.Hidden("id", item.ItemId)
       <button type="submit" class="btn btn-default">Mark Complete</button>
     }
   }
 }
-
-<p>@Html.ActionLink("Add new item", "Create")</p>
-<p>@Html.ActionLink("Home", "Index", "Home")</p>
