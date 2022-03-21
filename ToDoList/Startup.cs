@@ -32,8 +32,20 @@ namespace ToDoList
         .UseMySql(Configuration["ConnectionStrings:DefaultConnection"], ServerVersion.AutoDetect(Configuration["ConnectionStrings:DefaultConnection"])));
 
         services.AddIdentity<ApplicationUser, IdentityRole>()
-                  .AddEntityFrameworkStores<ToDoListContext>()
-                  .AddDefaultTokenProviders();
+          .AddEntityFrameworkStores<ToDoListContext>()
+          .AddDefaultTokenProviders();
+
+        //PASSWORD OVERRIDE
+        services.Configure<IdentityOptions>(options =>
+        {
+          options.Password.RequireDigit = false;
+          options.Password.RequiredLength = 0;
+          options.Password.RequireLowercase = false;
+          options.Password.RequireNonAlphanumeric = false;
+          options.Password.RequireUppercase = false;
+          options.Password.RequiredUniqueChars = 0;
+
+        });
 }
 
     public void Configure(IApplicationBuilder app) {
@@ -44,7 +56,7 @@ namespace ToDoList
       app.UseRouting();
 
       app.UseAuthorization();
-      
+
       app.UseEndpoints(routes => {
         routes.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
       });
